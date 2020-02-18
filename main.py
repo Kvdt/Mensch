@@ -16,9 +16,12 @@ class Mensch:
         self.weight = weight
         self.eyecolor = eyecolor
         self.is_male = is_male
+
+    def export_json(self):
         with open(self.name + '.json', 'w') as file:
             json.dump(self.__dict__, file)
-    def sayHello(self):
+
+    def say_hello(self):
         return (
                 'Hallo, mein Name ist ' + self.name +
                 ' ich bin ' + str(self.age) +
