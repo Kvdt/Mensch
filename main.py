@@ -1,5 +1,7 @@
+import json
+
 class Mensch:
-    def __init__(self, name:str, height:int, age:int, weight:float, eyecolor:str, isMale:bool):
+    def __init__(self, name: str, height: int, age: int, weight: float, eyecolor: str, is_male: bool):
         '''
         :param name: Name des Menschen
         :param height: Größe des Menschen in cm
@@ -13,8 +15,9 @@ class Mensch:
         self.age = age
         self.weight = weight
         self.eyecolor = eyecolor
-        self.isMale = isMale
-
+        self.is_male = is_male
+        with open(self.name + '.json', 'w') as file:
+            json.dump(self.__dict__, file)
     def sayHello(self):
         return (
                 'Hallo, mein Name ist ' + self.name +
@@ -23,5 +26,5 @@ class Mensch:
                 ' meter Groß.'
                 )
 
-Kolja = Mensch('Kolja', 179, 15, 59.08, 'Braun', True)
-print(Kolja.sayHello())
+
+Kolja = Mensch('Kolja', 179, 16, 59.08, 'Braun', True)
