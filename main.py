@@ -1,6 +1,6 @@
 import json
 
-class Mensch:
+class new_mensch:
     def __init__(self, name: str, height: int, age: int, weight: float, eyecolor: str, is_male: bool):
         '''
         :param name: Name des Menschen
@@ -29,5 +29,11 @@ class Mensch:
                 ' meter Groß.'
                 )
 
-
-Kolja = Mensch('Kolja', 179, 16, 59.08, 'Braun', True)
+class load_mensch:
+    def __init__(self, path: str):
+        '''
+        :param path: The path to the existing json
+        '''
+        self.path = path
+        with open(self.path + '.json') as file:
+            self.data = json.load(file)
