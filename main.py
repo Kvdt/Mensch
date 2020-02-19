@@ -10,6 +10,7 @@ class new_mensch:
         :param eyecolor: Farbe der Augen
         :param isMale: ob der Mensch männlich ist
         '''
+        self.verify = 'W9Dg9b#ZrqBa@Uzb'
         self.name = name
         self.height = height
         self.age = age
@@ -22,12 +23,9 @@ class new_mensch:
             json.dump(self.__dict__, file)
 
     def say_hello(self):
-        return (
-                'Hallo, mein Name ist ' + self.name +
-                ' ich bin ' + str(self.age) +
-                ' Jahre alt, und bin ' + str(self.height/100) +
-                ' meter Groß.'
-                )
+        msg = 'Hallo, mein Name ist {} ich bin {} Jahre alt, und bin {} meter Groß.'
+        return msg.format(self.name, self.age, self.height/100)
+
 
 class load_mensch:
     def __init__(self, path: str):
@@ -35,5 +33,20 @@ class load_mensch:
         :param path: The path to the existing json
         '''
         self.path = path
-        with open(self.path + '.json') as file:
+        with open(self.path) as file:
             self.data = json.load(file)
+        try:
+            if self.data['verify'] == 'W9Dg9b#ZrqBa@Uzb':
+                self.name = self.data['name']
+                self.height = self.data['height']
+                self.age = self.data['age']
+                self.weight = self.data['weight']
+                self.eyecolor = self.data['eyecolor']
+                self.is_male = self.data['is_male']
+
+        except KeyError: print("Bitte geben sie eine JSON im korrekten Format an")
+
+
+Kolja = new_mensch('Kolja', 181, 15, 59, 'brown', True)
+print(Kolja.say_hello())
+
